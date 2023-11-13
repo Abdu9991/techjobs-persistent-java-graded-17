@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Entity
 public class Employer extends AbstractEntity {
     @NotBlank(message = "Name is required.")
-    @Size(max = 100, message = "Location must be under 100 characters.")
+    @Size(min =3, max = 100 )
     public String location;
 
     @OneToMany
