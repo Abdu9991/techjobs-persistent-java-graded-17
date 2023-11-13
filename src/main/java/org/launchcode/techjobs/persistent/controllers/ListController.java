@@ -40,17 +40,14 @@ public class ListController {
         columnChoices.put("skill", "Skill");
 
     }
-
+    // lists all employers and skills by category
     @RequestMapping("")
     public String list(Model model) {
-        List employers = (List<Employer>) employerRepository.findAll();
-        model.addAttribute("employers", employers);
-
-        List skills = (List<Skill>) skillRepository.findAll();
-        model.addAttribute("skills", skills);
+        model.addAttribute("skills", skillRepository.findAll());
+        model.addAttribute("employers", employerRepository.findAll());
         return "list";
     }
-
+    // lists jobs by columns skill or employer
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
