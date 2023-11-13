@@ -15,15 +15,11 @@ import java.util.List;
 @Controller
 @RequestMapping("employers")
 public class EmployerController {
+    // EmployerRepository and allows to access data inside the table
     @Autowired
     private EmployerRepository employerRepository;
-    @GetMapping("")
-    public String index(Model model) {
-        model.addAttribute("title", "All Employers");
-        List employers = (List<Employer>) employerRepository.findAll();
-        model.addAttribute("employers", employers );
-        return "employers/index";
-    }
+    // displays and add employer form
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
@@ -54,5 +50,11 @@ public class EmployerController {
             return "redirect:../";
         }
 
+    }
+    // displays all employers
+    @GetMapping("")
+    public String index(Model model) {
+        model.addAttribute("employers", employerRepository.findAll());
+        return "employers/index";
     }
 }
